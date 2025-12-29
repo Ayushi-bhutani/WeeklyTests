@@ -29,7 +29,7 @@ namespace MediSure
                 switch (choice)
                 {
                     case 1:
-                        ops.CreateBill(); break;
+                        ops.CreateBill(); break;           
                     case 2: 
                         ops.ViewLastBill(); break;
                     case 3: 

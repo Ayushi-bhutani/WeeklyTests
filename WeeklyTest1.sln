@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedisureClinic", "MedisureClinic\MedisureClinic.csproj", "{D6651580-7611-2991-3F4B-3BCF6840A554}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickMart_Traders", "QuickMart_Traders\QuickMart_Traders.csproj", "{5FCB1C81-2690-B407-CC09-1EAFAF35BDA3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6651580-7611-2991-3F4B-3BCF6840A554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6651580-7611-2991-3F4B-3BCF6840A554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6651580-7611-2991-3F4B-3BCF6840A554}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6651580-7611-2991-3F4B-3BCF6840A554}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FCB1C81-2690-B407-CC09-1EAFAF35BDA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FCB1C81-2690-B407-CC09-1EAFAF35BDA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FCB1C81-2690-B407-CC09-1EAFAF35BDA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FCB1C81-2690-B407-CC09-1EAFAF35BDA3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1DBEAB6-0717-491A-AD7B-16F4C5B5FD1D}
+	EndGlobalSection
+EndGlobal

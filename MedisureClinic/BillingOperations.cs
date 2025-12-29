@@ -4,12 +4,15 @@ namespace MediSure
 {
     public class BillingOperations
     {
-        private static PatientBill? LastBill;
-        private static bool HasLastBill = false;
+        private static PatientBill? LastBill;   // static member variable to track last bill
+        private static bool HasLastBill = false;    //static member to detect is last bill is present 
 
         // ---------------- CREATE BILL ----------------
         public void CreateBill()
         {
+
+
+            // creating object bill for class PatientBill
             PatientBill bill = new PatientBill();
 
             Console.Write("Enter Bill Id: ");

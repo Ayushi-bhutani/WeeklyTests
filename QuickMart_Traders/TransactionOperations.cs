@@ -4,17 +4,21 @@ namespace QuickMart
 {
     public class TransactionOperations
     {
-        private static SaleTransaction? LastTransaction;
-        private static bool HasLastTransaction = false;
+        private static SaleTransaction? LastTransaction; //static member tells about LastTransaction
+        private static bool HasLastTransaction = false;    //static member tells about if there is LastTransaction or not
 
         // ------- CREATE TRANSACTION -------
         public void CreateTransaction()
         {
+
+            //creating object for SaleTransaction class 
             SaleTransaction tx = new SaleTransaction();
 
             Console.Write("Enter Invoice No: ");
             tx.InvoiceNo = Console.ReadLine();
 
+
+            //checking if InvoiceNo is empty or NULL
             if (string.IsNullOrWhiteSpace(tx.InvoiceNo))
             {
                 Console.WriteLine("Invoice No cannot be empty.");
@@ -63,6 +67,8 @@ namespace QuickMart
         // ------- VIEW LAST -------
         public void ViewLastTransaction()
         {
+
+            //checking if there is some last transaction present or not
             if (!HasLastTransaction || LastTransaction == null)
             {
                 Console.WriteLine("No transaction available. Please create a new transaction first.");
@@ -85,6 +91,8 @@ namespace QuickMart
         // ------- RECALCULATE -------
         public void Recalculate()
         {
+
+            //if last transaction is not present or NULL
             if (!HasLastTransaction || LastTransaction == null)
             {
                 Console.WriteLine("No transaction available. Please create a new transaction first.");
