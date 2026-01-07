@@ -17,7 +17,7 @@
                 amount: 500,
                 description: "Petty cash Addition",
                 source: "Main Fund"
-            ));
+            )); 
 
             // Expense Ledger
             Ledger<ExpenseTransaction> ExpenseLedger = new Ledger<ExpenseTransaction>();

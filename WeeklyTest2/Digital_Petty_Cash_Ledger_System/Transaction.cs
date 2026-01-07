@@ -12,7 +12,7 @@ namespace DigitalMoney
         public string Description { get; set; }
 
         protected Transaction(int id, DateTime date, decimal amount, string description)
-        {
+        { 
             Id = id;
             Date = date;
             Amount = amount;

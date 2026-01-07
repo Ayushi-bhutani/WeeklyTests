@@ -6,7 +6,7 @@ namespace DigitalMoney
     public static class Helper
     {
         /// <summary>
-        /// External Static Class for Calculations
+        /// External Static Class for Calculations 
 
         /// </summary>
 

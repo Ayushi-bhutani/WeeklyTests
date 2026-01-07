@@ -6,7 +6,7 @@ namespace DigitalMoney
     // T must be a Transaction
     public class Ledger<T> where T : Transaction
     {
-        // Internal storage (in-memory only)
+        // Internal storage (in-memory only) 
         private List<T> entries = new List<T>();
 
         // Add a transaction entry
