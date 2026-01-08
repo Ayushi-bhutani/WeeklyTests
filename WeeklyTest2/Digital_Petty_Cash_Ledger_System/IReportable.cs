@@ -1,10 +1,10 @@
 namespace DigitalMoney
 {
-
-    // INTERFACE
-    // Any transaction that can be reported must implement this
+    /// <summary>
+    /// Enforces reportable summary behavior.
+    /// </summary>
     public interface IReportable
     {
         string GetSummary();
     }
-} 
+}

@@ -1,28 +1,31 @@
-﻿namespace DigitalMoney
+﻿using System;
+using System.Collections.Generic;
+
+namespace DigitalMoney
 {
-    
     class Program
     {
         /// <summary>
-        /// Entry point of the program
+        /// Entry point of the application.
+        /// Demonstrates how the ledger system works.
         /// </summary>
         public static void Main()
         {
-            // Income Ledger 
-            Ledger<IncomeTransaction> IncomeLedger = new Ledger<IncomeTransaction>();
+            // Create separate ledgers for incomes and expenses
+            var incomeLedger = new Ledger<IncomeTransaction>();
+            var expenseLedger = new Ledger<ExpenseTransaction>();
 
-            IncomeLedger.AddEntry(new IncomeTransaction(
+            // ----- Add Sample Income -----
+            incomeLedger.AddEntry(new IncomeTransaction(
                 id: 1,
                 date: DateTime.Now,
                 amount: 500,
-                description: "Petty cash Addition",
+                description: "Petty cash addition",
                 source: "Main Fund"
-            )); 
+            ));
 
-            // Expense Ledger
-            Ledger<ExpenseTransaction> ExpenseLedger = new Ledger<ExpenseTransaction>();
-
-            ExpenseLedger.AddEntry(new ExpenseTransaction(
+            // ----- Add Sample Expenses -----
+            expenseLedger.AddEntry(new ExpenseTransaction(
                 id: 101,
                 date: DateTime.Now,
                 amount: 20,
@@ -30,7 +33,7 @@
                 category: "Stationery"
             ));
 
-            ExpenseLedger.AddEntry(new ExpenseTransaction(
+            expenseLedger.AddEntry(new ExpenseTransaction(
                 id: 102,
                 date: DateTime.Now,
                 amount: 50,
@@ -38,32 +41,23 @@
                 category: "Food"
             ));
 
-            
-            // Using Helper Class Functions
+            // ----- Perform Calculations using STATIC helper -----
+            decimal totalIncome  = LedgerCalculator.CalculateTotal(incomeLedger.GetAllEntries());
+            decimal totalExpense = LedgerCalculator.CalculateTotal(expenseLedger.GetAllEntries());
+            decimal netBalance   = LedgerCalculator.CalculateNetBalance(
+                                        incomeLedger.GetAllEntries(),
+                                        expenseLedger.GetAllEntries());
 
-            decimal totalIncome = Helper.CalculateTotal(IncomeLedger.GetAllEntries());
-            decimal totalExpense = Helper.CalculateTotal(ExpenseLedger.GetAllEntries());
-            decimal netBalance = Helper.CalculateNetBalance(IncomeLedger.GetAllEntries(), ExpenseLedger.GetAllEntries());
+            // ----- Display Summary -----
+            ReportPrinter.PrintSummary(totalIncome, totalExpense, netBalance);
 
-            // printing the output 
-            Console.WriteLine("=== PETTY CASH SUMMARY ===\n");
+            // Combine transactions for unified view
+            List<Transaction> all = new();
+            all.AddRange(incomeLedger.GetAllEntries());
+            all.AddRange(expenseLedger.GetAllEntries());
 
-            Console.WriteLine($"Total Income   : Rs {totalIncome}");
-            Console.WriteLine($"Total Expense  : Rs {totalExpense}");
-            Console.WriteLine($"Net Balance    : Rs {netBalance}\n");
-
-            
-            Console.WriteLine("TRANSACTION DETAILS");
-
-            // Combine all transactions from income and expense ledgers for unified display
-            List<Transaction> allTransactions = new List<Transaction>();
-            allTransactions.AddRange(IncomeLedger.GetAllEntries());
-            allTransactions.AddRange(ExpenseLedger.GetAllEntries());
-
-            foreach (Transaction t in allTransactions)
-            {
-                Console.WriteLine(t.GetSummary());
-            }
+            // ----- Display Detailed Transactions -----
+            ReportPrinter.PrintTransactions(all);
         }
     }
 }

@@ -1,60 +1,78 @@
+using System;
+
 namespace DigitalMoney
 {
-
-    // ABSTRACT BASE CLASS
-
-    
+    /// <summary>
+    /// Abstract base class representing a generic transaction.
+    /// </summary>
     public abstract class Transaction : IReportable
     {
-        public int Id { get; set; }
-        public DateTime Date { get; set; }
-        public decimal Amount { get; set; }
-        public string Description { get; set; }
+        public int Id { get; private set; }
+        public DateTime Date { get; private set; }
+        public decimal Amount { get; private set; }
+        public string Description { get; private set; }
 
         protected Transaction(int id, DateTime date, decimal amount, string description)
-        { 
+        {
+            if (amount <= 0)
+                throw new ArgumentException("Amount must be positive.");
+
+            if (string.IsNullOrWhiteSpace(description))
+                throw new ArgumentException("Description is required.");
+
             Id = id;
             Date = date;
             Amount = amount;
             Description = description;
         }
 
-        // Each derived class MUST provide its own summary
+        /// <summary>
+        /// All transactions must provide a formatted summary.
+        /// </summary>
         public abstract string GetSummary();
+
+        public override string ToString() => GetSummary();
     }
 
-    // ===============================
-    // EXPENSE TRANSACTION
-    // ===============================
+
+    /// <summary>
+    /// Represents a spending transaction.
+    /// </summary>
     public class ExpenseTransaction : Transaction
     {
-        public string Category { get; set; }
+        public string Category { get; private set; }
 
-        public ExpenseTransaction(int id, DateTime date, decimal amount, string description, string category) : base(id, date, amount, description)
+        public ExpenseTransaction(int id, DateTime date, decimal amount,
+                                  string description, string category)
+            : base(id, date, amount, description)
         {
             Category = category;
         }
 
         public override string GetSummary()
         {
-            return $"[EXPENSE] Rs {Amount} | {Category} | {Description} | {Date}";
+            return $"[EXPENSE] Rs {Amount} | {Category} | {Description} | {Date:d}";
         }
     }
 
-    // INCOME TRANSACTION
-   
+
+    /// <summary>
+    /// Represents money added into petty cash.
+    /// </summary>
     public class IncomeTransaction : Transaction
     {
-        public string Source { get; set; }
+        public string Source { get; private set; }
 
-        public IncomeTransaction(int id, DateTime date, decimal amount, string description, string source) : base(id, date, amount, description)
+        public IncomeTransaction(int id, DateTime date, decimal amount,
+                                 string description, string source)
+            : base(id, date, amount, description)
         {
             Source = source;
         }
 
         public override string GetSummary()
         {
-            return $"[INCOME] Rs {Amount} | Source: {Source} | {Description} | {Date}";
+            return $"[INCOME] Rs {Amount} | Source: {Source} | {Description} | {Date:d}";
         }
     }
 }
